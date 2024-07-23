@@ -41,7 +41,6 @@ This section describes the process of collecting match data using the Riot API a
 ![image](https://github.com/user-attachments/assets/57621878-91d5-4534-8841-50e79398a8b1)
 
 3. **Run the Main Function**: Call the `main` function with the obtained PUUID. The algorithm will then collect match data for the root player and other players in their games. It ensures no duplicate players or matches are recorded using sets. The dataset will throw an error if an identical match ID is encountered. The diagram depicts the first iteration of the algorithm.
-   
 ![image](https://github.com/user-attachments/assets/55808403-fbd4-4877-87de-9e3965bdd91f)
 
 **Notes**: The rank information is derived from the solo/duo rank of the first player found in each match. While this may not be the most accurate method, it is more efficient than querying the rank information for all 10 players, which would require 10 times as many API calls. The algorithm is set to end after 
