@@ -44,7 +44,7 @@ This section describes the process of collecting match data using the Riot API a
    
 ![image](https://github.com/user-attachments/assets/55808403-fbd4-4877-87de-9e3965bdd91f)
 
-**Note**: The rank information is derived from the solo/duo rank of the first player found in each match. While this may not be the most accurate method, it is more efficient than querying the rank information for all 10 players, which would require 10 times as many API calls.
+**Notes**: The rank information is derived from the solo/duo rank of the first player found in each match. While this may not be the most accurate method, it is more efficient than querying the rank information for all 10 players, which would require 10 times as many API calls. The algorithm is set to end after 
 
 **Example**:
 ```python
@@ -56,20 +56,19 @@ main("Wmig-c4JTkPXHkAJJ8NCEUE5FFpJyFfF0IpwXQfI3geaYExpuGTHUGON2EW4TnGOSqLY5LHxCL
 This section describes the usage of the code for processing the data such as encoding data, transforming data, training the models, testing, and predicting. The algorithm will train models to predict outcome of drafts depending on some parameters. So the model to predict games from NA will be different from a model predicting games from EU as metas differ in different regions, elos, and game versions. 
 
 1. **Navigate to ModelSetup.ipynb**
-2. **Fill in parameters**: `def main(blue_team, red_team,region,game_mode,elo,version, threshold,batch_size, num_epochs, override)`:
-    - Italicized parameters are optional.
-    - blue_team: (Possible entries = ['Naafiri', 'Braum', 'Kayn', 'Kled', 'Smolder'] | format = array)
-    - red_team: (Possible entries = ['Akshan', 'Viego', 'Leona', 'Camille', 'Aphelios'] | format = array)
-    - region: (Possible entries = 'ANY', 'NA1', 'EUW1', 'KR', 'BR1', etc. | format = string | default = 'NA1')
-    - game_mode: (Possible entries = 'ANY', 'ARAM', 'CLASSIC' | format = string | default = 'ARAM')
-    - elo: (Possible entries = 'ANY', 'BRONZE', 'GOLD', etc. | format = string | default = 'ANY')
-    - version: (Possible entries = 14.13, 14.12 | format = string | default = 14.13)
-    - threshold: (Possible values = any number from 1 to 10 | format = int | default = 5)
-    - batch_size: (Possible values = any int | format = int | default = 1)
-    - num_epochs: (Possible recommended values = any int | format = int | default = 10)
-    - override: (Possible values = True, False | format = bool | default = False)
+2. **Fill in parameters** when calling `def main(blue_team, red_team,region,game_mode,elo,version, threshold,batch_size, num_epochs, override)` Italicized parameters are mandatory:
+    - *blue_team*: (a possible entry = `['Naafiri', 'Braum', 'Kayn', 'Kled', 'Smolder']` | format = array of strings)
+    - *red_team*: (a possible entry = `['Akshan', 'Viego', 'Leona', 'Camille', 'Aphelios']` | format = array of strings)
+    - region: (some possible entries = `'ANY', 'NA1', 'EUW1', 'KR', 'BR1', etc.` | format = string | default = 'NA1')
+    - game_mode: (all possible entries = `'ANY', 'ARAM', 'CLASSIC'` | format = string | default = 'ARAM')
+    - elo: (some possible entries = `'ANY', 'BRONZE', 'GOLD', etc.` | format = string | default = 'ANY')
+    - version: (all possible entries = `'ANY', '14.13', '14.12'` | format = string | default = 14.13)
+    - threshold: Specifies the minimum number of matching champions on a team required to consider a game relevant. For example, setting a threshold of five means the function will return all games where a team has five or more champions that match the specified champions. (Possible values = any number from 1 to 10 | format = int | default = 5)
+    - batch_size: (recommended values = `1,2,5` | format = int | default = 1)
+    - num_epochs: (recommended values = `5,10,20,50,100` | format = int | default = 10)
+    - override: Determines whether to train a new model to override the old one or not (all possible values = `True, False` | format = bool | default = False)
 
-**example usage**: 
+**Example Usage**: 
 ```python
 blue_team = ['Naafiri','Braum','Kayn','Kled','Smolder']
 red_team = ['Akshan','Viego','Leona','Camille','Aphelios']
@@ -77,11 +76,36 @@ main(blue_team, red_team,'NA1','ANY','ANY','14.13', threshold=5, batch_size=1, n
 ```
 
 ## Features
+- Creates and populates SQL table with match stats such as id, champions, region, elo, etc
+- Encodes champion names with bag of words
+- Initializes neural network, support vector machine, and naive gaussian bayes
+- Trains and tests all models
+- Batch inputs for quicker training and testing
+- GPU support
+- All models have between 53-55% accuracy (>50 is good) 
+- Uses voting as an ensemble method
+- Given two teams, predict which will win
+- Modularized, with pipeline in main()
+- Thousands of match data in csvs
+- Pre-trained models
 
 ## Pipeline
 
 ### Model
 
 ## Future Work
+- Improve NN performance
+- Different ensemble learning method
+- Different encoding
+- Add more data such as runes, summoner spells, to help predict outcome
 
 ## Contributing
+Pull requests are welcome.
+
+For suggestions feel free to send me an email from my website.
+
+Likewise for bugs/errors, or report it as an issue.
+
+Feel free to use this code, but please give credits.
+
+Thanks :D
