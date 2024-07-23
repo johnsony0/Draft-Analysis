@@ -53,20 +53,28 @@ main("Wmig-c4JTkPXHkAJJ8NCEUE5FFpJyFfF0IpwXQfI3geaYExpuGTHUGON2EW4TnGOSqLY5LHxCL
 
 ### Creating Model
 
-This section describes the usage of the code for processing the data such as encoding, transforming, training the models, testing, and predicting. The algorithm will train models to predict outcome of drafts depending on some parameters. So the model to predict games from NA will be different from a model predicting games from EU as metas differ in different regions, elos, and game versions. 
+This section describes the usage of the code for processing the data such as encoding data, transforming data, training the models, testing, and predicting. The algorithm will train models to predict outcome of drafts depending on some parameters. So the model to predict games from NA will be different from a model predicting games from EU as metas differ in different regions, elos, and game versions. 
 
 1. **Navigate to ModelSetup.ipynb**
-2. **Fill in parameters**: *italicized parameters* are optional
-    - region: region of the game possible inputs include NA1,EUW1,BR1,KR, etc
-    - game_mode:
-    - elo:
-    - version
-    - blue_team
-    - red_team
-    - *threshold*
-    - *batch_size*
-    - *num_epochs*
-    - *override*
+2. **Fill in parameters**: `def main(blue_team, red_team,region,game_mode,elo,version, threshold,batch_size, num_epochs, override)`:
+    - Italicized parameters are optional.
+    - blue_team: (Possible entries = ['Naafiri', 'Braum', 'Kayn', 'Kled', 'Smolder'] | format = array)
+    - red_team: (Possible entries = ['Akshan', 'Viego', 'Leona', 'Camille', 'Aphelios'] | format = array)
+    - region: (Possible entries = 'ANY', 'NA1', 'EUW1', 'KR', 'BR1', etc. | format = string | default = 'NA1')
+    - game_mode: (Possible entries = 'ANY', 'ARAM', 'CLASSIC' | format = string | default = 'ARAM')
+    - elo: (Possible entries = 'ANY', 'BRONZE', 'GOLD', etc. | format = string | default = 'ANY')
+    - version: (Possible entries = 14.13, 14.12 | format = string | default = 14.13)
+    - threshold: (Possible values = any number from 1 to 10 | format = int | default = 5)
+    - batch_size: (Possible values = any int | format = int | default = 1)
+    - num_epochs: (Possible recommended values = any int | format = int | default = 10)
+    - override: (Possible values = True, False | format = bool | default = False)
+
+**example usage**: 
+```python
+blue_team = ['Naafiri','Braum','Kayn','Kled','Smolder']
+red_team = ['Akshan','Viego','Leona','Camille','Aphelios']
+main(blue_team, red_team,'NA1','ANY','ANY','14.13', threshold=5, batch_size=1, num_epochs=10, override=False)
+```
 
 ## Features
 
