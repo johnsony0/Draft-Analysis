@@ -37,7 +37,7 @@ This section describes the process of collecting match data using the Riot API a
 1. **Navigate to DatabaseSetup.ipynb**
 
 2. **Obtain a PUUID**: Get the PUUID of a 'root player' (this can be yourself, a pro player, or any other player) by using the [Riot API website](https://developer.riotgames.com/apis#account-v1/GET_getByRiotId). For example, if your username is 'Player #NA1' your input should match the example below, the PUUID will be found in the response body.
-![image](https://github.com/user-attachments/assets/f5a43645-563e-4506-b89d-8dd309ffa4a5)
+![image](https://github.com/user-attachments/assets/8d60bc27-3f24-4d63-b7f0-f02a37fb4fc4)
 ![image](https://github.com/user-attachments/assets/57621878-91d5-4534-8841-50e79398a8b1)
 
 3. **Run the Main Function**: Call the `main` function with the obtained PUUID. The algorithm will then collect match data for the root player and other players in their games. It ensures no duplicate players or matches are recorded using sets. The dataset will throw an error if an identical match ID is encountered. The diagram depicts the first iteration of the algorithm.
