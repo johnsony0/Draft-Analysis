@@ -90,13 +90,28 @@ main(blue_team, red_team,'NA1','ANY','ANY','14.13', threshold=5, batch_size=1, n
 
 ## Pipeline
 
+Depicted below is the general pipeline of this ml project, showing which functions perform which module of the pipeline.
+![image](https://github.com/user-attachments/assets/14f55f7b-daf1-45a6-b0eb-d731e061f7c0)
+
+### Encoding
+
+This method transforms an input list of champions into a binary array. Each position in the array corresponds to a champion from a predefined list. If an input champion matches a champion in the predefined list, its position in the array is set to 1; otherwise, it remains 0. The sklearn input is an array so we append the blue_team and red_team encoded data, while the PyTorch input is a 2d array so we can vertical stack the blue_team and red_team encoded data, as visualized below.
+
+![image](https://github.com/user-attachments/assets/e9f4e5e4-e69b-448b-8fe0-e4deb3b0d391)
+
 ### Model
+
+The encoded data is put into three models: linear support vector classification, gaussian naive bayes classification and a convolutional neural network. The output of each of these are put into a voting ensemble with the most frequent output being the final output selected.
+
+The convolutional model consists of convolution layers followed by ReLUs, and a flatten before fully connected layers as shown. 
+
+![image](https://github.com/user-attachments/assets/15da7cf1-127b-47d9-9d5b-c1050963d130)
 
 ## Future Work
 - Improve NN performance
 - Different ensemble learning method
 - Different encoding
-- Add more data such as runes, summoner spells, to help predict outcome
+- Add more data such as runes, player ranks, to help predict outcome
 
 ## Contributing
 Pull requests are welcome.
