@@ -100,7 +100,7 @@ Below is the general pipeline of this ML project, indicating which functions cor
 
 This method transforms an input list of champions into a binary array. Each position in the array corresponds to a champion from a predefined list. If an input champion matches a champion in the predefined list, its position in the array is set to 1; otherwise, it remains 0. The sklearn input is an array so we append the blue_team and red_team encoded data, while the PyTorch input is a 2d array so we can vertical stack the blue_team and red_team encoded data.
 
-![image](https://github.com/user-attachments/assets/8159fc3a-f9b4-4c8f-bc55-780ef3517f86)
+![image](https://github.com/user-attachments/assets/9e333bed-9926-4d4a-be9f-9229757f50b9)
 
 ### Model
 
