@@ -108,9 +108,10 @@ The encoded data is put into three models: linear support vector classification,
 
 ![image](https://github.com/user-attachments/assets/e6d133b2-3c55-429d-b7bc-5aa094a1beb6)
 
-The convolutional model consists of convolution layers followed by ReLUs, and a flatten before fully connected layers.
+The convolutional model consists of convolution layers followed by ReLUs, and a flatten before fully connected layers, and finished with a softmax.
 
-![image](https://github.com/user-attachments/assets/15da7cf1-127b-47d9-9d5b-c1050963d130)
+![image](https://github.com/user-attachments/assets/f00c41d0-7f4c-4420-bb8a-a96a316e0fc3)
+
 
 ## Future Work
 - Improve NN performance
