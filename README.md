@@ -1,4 +1,4 @@
-# Coming up with a name rn
+# LAPD (League Analysis Predicting Drafts)
 
 ## Installation
 
